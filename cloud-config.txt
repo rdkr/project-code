@@ -1,4 +1,9 @@
 #cloud-config
+
+#v1.0
+#Created two user accounts for the server admins. Automatically adds public keys for connection and provides passwordless
+#sudo access. The configuration also edits the sshd_config file to prevent root ssh access and allows ssh access from the two # users
+
     - name: gov
       ssh-authorized-keys:
           - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCxUszDzuOBl/O1rFzexIxTRdXYB9UReiOm6g2ur4lp7iLibrnfohJuu8JtDU+oxRFFCL9Ij7NipdC0BccnHSq2qxQ+bl2dJsgQDRR3Z/cSWk6LM3GSARkr9cOR+ym5INaJOdpuUgtmtW75b/Mqq86nPZZiRR3rRQSpkHwhyxXH7BtVcFSvzOH0Az0vMb8Mn/2427X29TvoL40G/uvytp+OMYkBCyFmI1q/AN0oBh1fcjZ6VH+rJmyBGgWUwDZmate/XePgzPvZU/I+64sNhr27dSPpK2wJ4qy13bCUUqMWRFGKrgtAnNsvlRGWoqU1MtNhlejmzsLBs5jrUznQ3hg4jRIyXXVHSuA74bfAVgMonmaa2c8vfB5qC77rF//v+g2yc6OMYmJLa6OU1AA9eaSA61qaPc1Uy6zbrKCr6TN3xqCONnDYevI6pYxHsOaA6oH2HH4yKuucqBBm9XMFpO/qT+uAUr0uFjSUl3qeZ3L/U2BYmNfySwo2TqUKoQaQ/SzuOnq4RA/3hFSftfWYt63TwtLCJfltrAD2Say474jjoj6ALCnvBBxQrmwarEJ7u32lWQGFNPRCsKZhAkI99oKe6xlGBgg3uP8LYegEeTGlhZ0TWKh0I0a/kIh2Bi4QIFfK4k3OGbygYJBHoTR4bn92TDY7GGchtJdON7w3TD+xrQ== govind.suresh1@gmail.com
