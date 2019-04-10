@@ -22,7 +22,7 @@ users:
 write_files:
     - path: /etc/ssh/sshd_config
       content: |
-          Port 4444
+          Port 22
           Protocol 2
           HostKey /etc/ssh/ssh_host_rsa_key
           HostKey /etc/ssh/ssh_host_dsa_key
