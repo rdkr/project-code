@@ -51,4 +51,4 @@ write_files:
           AcceptEnv LANG LC_*
           Subsystem sftp /usr/lib/openssh/sftp-server
           UsePAM yes
-          AllowUsers [gov, neel]
+          AllowUsers gov neel
