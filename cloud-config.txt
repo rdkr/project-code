@@ -18,6 +18,13 @@ users:
       sudo: ['ALL=(ALL) NOPASSWD:ALL']
       groups: sudo
       shell: /bin/bash
+     
+    - name: jon
+      ssh-authorized-keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC8Mx0g2no0gipy7hA4FAOUEYabp8TBfmvzfgVcoAPdMizteZnsoQoDFRemXr34eTXZ+8BsWjWFf1c8OgO+qqVcahP4gMsw+eWcChLAZiXLyxX+UxRjrFq/5fvpR4FbocYiYfwZ2AljF+piVkuPnQRu7Ez0DFCynzRL7SydQ8sBvyseXEiQbyviyGq7KpWx5fVPwBh6lYL4tCxktgQsR/WuskcARRhMiY+tOgTn/V/eQJnSkmlkiJ1jKPhxAG79pJWpxRbkNuAro7UuK9HvkOtyKE3+U5pnb5hKihqJ9BprM85wyoGOxtaQh2S2Vyj09OlFpOKVFcNtXTX6GgksQ+ipqP984hCsfdZN8Ru2uc6+qAgEvjFnR7yDT0RozfQrnUwxyU4kjCVnS2IaKlb28HJlr+ZNhMJyM21tQtUcXPMBT04uwY1Tc/MDAFzLKZaNhaDXVJwlT4W21g0Rfvd0NWARRtdmgDy8Pb/l9aDpFgLycqZtphViuNVyyeJCU9hs6z3ncP+eY8pJQ4cpOHSp6PNg4Ti9EYHxFCNB+w4VmSH/7KT/BP4/Ga56K1g9qB4fAqMN1Or8nsXliZJmqllxDbfxresWuPB/mrkeqeABfRwzKPXgm5b4TEIIwf0P8g4d2gb7tRdEkZJgfW6UOi3bz+EvXMvpvmeETdY2pliqV5woPw==
+      sudo: ['ALL=(All) NOPASSWD:ALL']
+      groups: sudo
+      shell: /bin/bash
 
 write_files:
     - path: /etc/ssh/sshd_config
@@ -51,4 +58,4 @@ write_files:
           AcceptEnv LANG LC_*
           Subsystem sftp /usr/lib/openssh/sftp-server
           UsePAM yes
-          AllowUsers gov neel
+          AllowUsers gov neel jon
