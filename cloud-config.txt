@@ -1,6 +1,6 @@
 #cloud-config
 
-#v1.0
+#v1.1
 #Created two user accounts for the server admins. Automatically adds public keys for connection and provides passwordless
 #sudo access. The configuration also edits the sshd_config file to prevent root ssh access and allows ssh access from the two # users
 
