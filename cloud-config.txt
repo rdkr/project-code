@@ -1,8 +1,6 @@
 #cloud-config
-
+#See readme file for the project for details on what this does
 #v1.1
-#Creates user accounts for the server admins. Automatically adds public keys for connection and provides passwordless
-#sudo access. The configuration also edits the sshd_config file to prevent root ssh access and allows ssh access from the two # users
 
 users:
     - name: gov
@@ -25,6 +23,7 @@ users:
       sudo: ['ALL=(All) NOPASSWD:ALL']
       groups: sudo
       shell: /bin/bash
+
 
 write_files:
     - path: /etc/ssh/sshd_config
@@ -59,3 +58,11 @@ write_files:
           Subsystem sftp /usr/lib/openssh/sftp-server
           UsePAM yes
           AllowUsers gov neel jon
+
+runcmd:
+    - 'apt-get update'
+    - 'apt install apt-transport-https ca-certificates curl software-properties-common'
+    - 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -'
+    - 'add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable'
+    - 'apt update'
+    - 'apt install docker-ce'
