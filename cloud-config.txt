@@ -1,19 +1,8 @@
 #cloud-config
 #See readme file for the project for details on what this does
-#v1.1
+#v1.2
 
 package_upgrade: true 
-
-packages: 
-    -docker-ce
-
-apt:
-    preserve_sources_list: true
-    
-    sources:
-        docker.list:
-            source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-            keyid: 0EBFCD88 #docker gpg key
 
 runcmd:
     - curl -fsSL https://get.docker.com -o get-docker.sh; sh get-docker.sh
@@ -74,6 +63,12 @@ write_files:
           Subsystem sftp /usr/lib/openssh/sftp-server
           UsePAM yes
           AllowUsers gov neel jon
+          
+power_state:
+  delay: "now"
+  mode: reboot
+  message: First reboot
+  condition: True
 
 
 
