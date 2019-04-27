@@ -4,29 +4,54 @@
 
 package_upgrade: true 
 
-runcmd:
-    - curl -fsSL https://get.docker.com -o get-docker.sh; sh get-docker.sh
+packages: 
+    - apt-transport-https
+    - docker-ce
 
+#Defines apt repositories to install from and relevant keys needed. Sources are saved at /etc/apt/sources.list.d
+apt:
+    preserve_sources_list: true
+
+    sources:
+        https.list:
+            source: "deb http://security.ubuntu.com/ubuntu xenial-security main"
+            
+        docker.list:
+            source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+            keyid: 0EBFCD88 #docker gpg key
+            keyserver: hkp://keyserver.ubuntu.com:80
+
+#installs packages from the repos defined above             
+runcmd:
+    - "sudo apt-get install apt-transport-https" 
+    - "sudo apt-get install docker-ce"
+    
+#creates groups
+#groups:
+    #- docker
+
+
+#defines the users to be added to the server and assigns groups
 users:
     - name: gov
       ssh-authorized-keys:
           - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCxUszDzuOBl/O1rFzexIxTRdXYB9UReiOm6g2ur4lp7iLibrnfohJuu8JtDU+oxRFFCL9Ij7NipdC0BccnHSq2qxQ+bl2dJsgQDRR3Z/cSWk6LM3GSARkr9cOR+ym5INaJOdpuUgtmtW75b/Mqq86nPZZiRR3rRQSpkHwhyxXH7BtVcFSvzOH0Az0vMb8Mn/2427X29TvoL40G/uvytp+OMYkBCyFmI1q/AN0oBh1fcjZ6VH+rJmyBGgWUwDZmate/XePgzPvZU/I+64sNhr27dSPpK2wJ4qy13bCUUqMWRFGKrgtAnNsvlRGWoqU1MtNhlejmzsLBs5jrUznQ3hg4jRIyXXVHSuA74bfAVgMonmaa2c8vfB5qC77rF//v+g2yc6OMYmJLa6OU1AA9eaSA61qaPc1Uy6zbrKCr6TN3xqCONnDYevI6pYxHsOaA6oH2HH4yKuucqBBm9XMFpO/qT+uAUr0uFjSUl3qeZ3L/U2BYmNfySwo2TqUKoQaQ/SzuOnq4RA/3hFSftfWYt63TwtLCJfltrAD2Say474jjoj6ALCnvBBxQrmwarEJ7u32lWQGFNPRCsKZhAkI99oKe6xlGBgg3uP8LYegEeTGlhZ0TWKh0I0a/kIh2Bi4QIFfK4k3OGbygYJBHoTR4bn92TDY7GGchtJdON7w3TD+xrQ== govind.suresh1@gmail.com
       sudo: ['ALL=(ALL) NOPASSWD:ALL']
-      groups: sudo
+      groups: sudo, docker
       shell: /bin/bash
 
     - name: neel
       ssh-authorized-keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEL77BGUTC78fLo/kvSrVDkJ/KPvJA7m2wHGTq7ACd/w
       sudo: ['ALL=(ALL) NOPASSWD:ALL']
-      groups: sudo
+      groups: sudo, docker
       shell: /bin/bash
      
     - name: jon
       ssh-authorized-keys:
           - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC8Mx0g2no0gipy7hA4FAOUEYabp8TBfmvzfgVcoAPdMizteZnsoQoDFRemXr34eTXZ+8BsWjWFf1c8OgO+qqVcahP4gMsw+eWcChLAZiXLyxX+UxRjrFq/5fvpR4FbocYiYfwZ2AljF+piVkuPnQRu7Ez0DFCynzRL7SydQ8sBvyseXEiQbyviyGq7KpWx5fVPwBh6lYL4tCxktgQsR/WuskcARRhMiY+tOgTn/V/eQJnSkmlkiJ1jKPhxAG79pJWpxRbkNuAro7UuK9HvkOtyKE3+U5pnb5hKihqJ9BprM85wyoGOxtaQh2S2Vyj09OlFpOKVFcNtXTX6GgksQ+ipqP984hCsfdZN8Ru2uc6+qAgEvjFnR7yDT0RozfQrnUwxyU4kjCVnS2IaKlb28HJlr+ZNhMJyM21tQtUcXPMBT04uwY1Tc/MDAFzLKZaNhaDXVJwlT4W21g0Rfvd0NWARRtdmgDy8Pb/l9aDpFgLycqZtphViuNVyyeJCU9hs6z3ncP+eY8pJQ4cpOHSp6PNg4Ti9EYHxFCNB+w4VmSH/7KT/BP4/Ga56K1g9qB4fAqMN1Or8nsXliZJmqllxDbfxresWuPB/mrkeqeABfRwzKPXgm5b4TEIIwf0P8g4d2gb7tRdEkZJgfW6UOi3bz+EvXMvpvmeETdY2pliqV5woPw==
       sudo: ['ALL=(All) NOPASSWD:ALL']
-      groups: sudo
+      groups: sudo, docker
       shell: /bin/bash
 
 
