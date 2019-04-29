@@ -1,0 +1,79 @@
+#cloud-config
+# See readme file for the project for details on what this does
+
+package_upgrade: true 
+
+packages: 
+    - apt-transport-https
+    - docker-ce
+
+# Defines apt repositories to install from and relevant keys needed. Sources are saved at /etc/apt/sources.list.d
+apt:
+    preserve_sources_list: true
+
+    sources:
+        https.list:
+            source: "deb http://security.ubuntu.com/ubuntu xenial-security main"
+            
+        docker.list:
+            source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+            keyid: 0EBFCD88 #docker gpg key
+            keyserver: hkp://keyserver.ubuntu.com:80
+            
+# Defines the users to be added to the server and assigns groups
+users:
+    - name: gov
+      ssh-authorized-keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCxUszDzuOBl/O1rFzexIxTRdXYB9UReiOm6g2ur4lp7iLibrnfohJuu8JtDU+oxRFFCL9Ij7NipdC0BccnHSq2qxQ+bl2dJsgQDRR3Z/cSWk6LM3GSARkr9cOR+ym5INaJOdpuUgtmtW75b/Mqq86nPZZiRR3rRQSpkHwhyxXH7BtVcFSvzOH0Az0vMb8Mn/2427X29TvoL40G/uvytp+OMYkBCyFmI1q/AN0oBh1fcjZ6VH+rJmyBGgWUwDZmate/XePgzPvZU/I+64sNhr27dSPpK2wJ4qy13bCUUqMWRFGKrgtAnNsvlRGWoqU1MtNhlejmzsLBs5jrUznQ3hg4jRIyXXVHSuA74bfAVgMonmaa2c8vfB5qC77rF//v+g2yc6OMYmJLa6OU1AA9eaSA61qaPc1Uy6zbrKCr6TN3xqCONnDYevI6pYxHsOaA6oH2HH4yKuucqBBm9XMFpO/qT+uAUr0uFjSUl3qeZ3L/U2BYmNfySwo2TqUKoQaQ/SzuOnq4RA/3hFSftfWYt63TwtLCJfltrAD2Say474jjoj6ALCnvBBxQrmwarEJ7u32lWQGFNPRCsKZhAkI99oKe6xlGBgg3uP8LYegEeTGlhZ0TWKh0I0a/kIh2Bi4QIFfK4k3OGbygYJBHoTR4bn92TDY7GGchtJdON7w3TD+xrQ== govind.suresh1@gmail.com
+      sudo: ['ALL=(ALL) NOPASSWD:ALL']
+      groups: sudo, docker
+      shell: /bin/bash
+
+    - name: neel
+      ssh-authorized-keys:
+          - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEL77BGUTC78fLo/kvSrVDkJ/KPvJA7m2wHGTq7ACd/w
+      sudo: ['ALL=(ALL) NOPASSWD:ALL']
+      groups: sudo, docker
+      shell: /bin/bash
+     
+    - name: jon
+      ssh-authorized-keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCsMrd68uZWTOlj/T76wq4hp9iVYkABV15jk8auOqzi1ZQrGhOyJCT/wst05NVIaTLcKfWOWsnzpX0LmyKsgnx9CG5Nb/f2bwge028krbnxyzZTh/FxGzB4pFJSk0eaEVsIoDK17c29cT/q6UVQGn870HfbITCfwBg79jgGxtWF0Ijh2InjvSAs8gt4Uwn4FdvIc2bkxLs0B4KHF/TIXAaBFCoG12uaf43yM3rVpl2OSiTDk+7vTFTimsZtfHfFAADnAH4Czk4IbKkDavLS5jcx7IzsxjTIXgCfLCxK6BO0NGgrnlcgVytXQ+tPdmgGTEcKCcWsV0j2/LXv+FXFYTSUh2+MHF9aVMR8bD651nsKHNcxiyUKnqo9udoNWoYVoxuTXW1f28pfjLVYad5pJqh4YQjIMPA9kFkiQ+za4a66KCOpENATdaiO/aWNMsWHuJ1T/sU8xwvmqtSMbuqYG5rh47nQlCadfzfhDPfqV1QDN4+K+ntv1LJa+USbhjBlnWoRwf4SpEoiIn+zj2PU+Jfch+nirP5hYfwIUnpzesd4r/E7SpNweWgA5/Zu+kSMNrThexOr9EIaQN/1InqFDugKnzydGKtGzea/3LWXrNDtgiKHIfD0WvucI4qegbGUPtey0UcBqDpPSgoAdDzMMRuzrqrmH2MibxYLtX5MZmnCsw==
+      sudo: ['ALL=(All) NOPASSWD:ALL']
+      groups: sudo, docker
+      shell: /bin/bash
+
+write_files:
+    - path: /etc/ssh/sshd_config
+      content: |
+          Port 22
+          Protocol 2
+          HostKey /etc/ssh/ssh_host_rsa_key
+          HostKey /etc/ssh/ssh_host_dsa_key
+          HostKey /etc/ssh/ssh_host_ecdsa_key
+          HostKey /etc/ssh/ssh_host_ed25519_key
+          UsePrivilegeSeparation yes
+          KeyRegenerationInterval 3600
+          ServerKeyBits 1024
+          SyslogFacility AUTH
+          LogLevel INFO
+          LoginGraceTime 120
+          PermitRootLogin no
+          StrictModes yes
+          RSAAuthentication yes
+          PubkeyAuthentication yes
+          IgnoreRhosts yes
+          RhostsRSAAuthentication no
+          HostbasedAuthentication no
+          PermitEmptyPasswords no
+          ChallengeResponseAuthentication no
+          X11Forwarding yes
+          X11DisplayOffset 10
+          PrintMotd no
+          PrintLastLog yes
+          TCPKeepAlive yes
+          AcceptEnv LANG LC_*
+          Subsystem sftp /usr/lib/openssh/sftp-server
+          UsePAM yes
+          AllowUsers gov neel jon
+          
