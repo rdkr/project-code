@@ -77,8 +77,3 @@ write_files:
           UsePAM yes
           AllowUsers gov neel jon
           
-power_state:
-  delay: "now"
-  mode: reboot
-  message: First reboot
-  condition: True
