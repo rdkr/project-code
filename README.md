@@ -8,10 +8,19 @@ Project Code is a collaborative project to learn and teach Python, DevOps, and a
 
 
 ## Hosting
-### Cloud-init.txt 
-This is the cloud-init file that configures the server, it creates the main user accounts for the code-owners and provides passwordless sudo access via SSH. The file also edits the sshd_config file to prevent root ssh access.
-As we are using DigitalOcean, to use the cloud-init simply select the user-data box in the 'select additional options' section when creating a droplet and copy in the contents of th
+The server will be running Ubuntu 16.04.6 x64 on DigitalOcean's cloud platform. 
 
+### Cloud-init.txt 
+Configuration file that runs at server set-up. 
+To use this file copy the contents of the file into the 'user data' box when setting up a DigitalOcean instance. 
+
+#### Users
+The current configuration sets up three user accounts and allows connection via SSH. Admin users are also provided paswordless sudo access if they have logged in via SSH. Users are also added to the docker group so they do not need to call sudo when running docker commands. 
+Root ssh access has been disabled.
+
+#### Packages
+- apt-transfer-https: used to install docker via the https repository
+- docker-ce: installs the docker-ce version via the official docker repository. The config uses the relevant gpg key to ensure authenticity. Presently, the installation is specific to Ubuntu 16.04 Xenial. 
 
 ## Application
 
