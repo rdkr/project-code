@@ -1,6 +1,6 @@
 #cloud-config
 #See readme file for the project for details on what this does
-#v1.2
+
 
 package_upgrade: true 
 
