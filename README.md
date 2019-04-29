@@ -6,7 +6,6 @@ Project Code is a collaborative project to learn and teach Python, DevOps, and a
 * project management - see [trello](https://trello.com/b/FC8mke6j/project-code)
 * members - see [CODEOWNERS](CODEOWNERS) and [AUTHORS](AUTHORS)
 
-
 ## Hosting
 The server will be running Ubuntu 16.04.6 x64 on DigitalOcean's cloud platform. 
 
