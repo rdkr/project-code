@@ -1,6 +1,5 @@
 #cloud-config
-#See readme file for the project for details on what this does
-
+# See readme file for the project for details on what this does
 
 package_upgrade: true 
 
@@ -8,7 +7,7 @@ packages:
     - apt-transport-https
     - docker-ce
 
-#Defines apt repositories to install from and relevant keys needed. Sources are saved at /etc/apt/sources.list.d
+# Defines apt repositories to install from and relevant keys needed. Sources are saved at /etc/apt/sources.list.d
 apt:
     preserve_sources_list: true
 
@@ -20,18 +19,8 @@ apt:
             source: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
             keyid: 0EBFCD88 #docker gpg key
             keyserver: hkp://keyserver.ubuntu.com:80
-
-#installs packages from the repos defined above             
-runcmd:
-    - "sudo apt-get install apt-transport-https" 
-    - "sudo apt-get install docker-ce"
-    
-#creates groups
-#groups:
-    #- docker
-
-
-#defines the users to be added to the server and assigns groups
+            
+# Defines the users to be added to the server and assigns groups
 users:
     - name: gov
       ssh-authorized-keys:
@@ -53,7 +42,6 @@ users:
       sudo: ['ALL=(All) NOPASSWD:ALL']
       groups: sudo, docker
       shell: /bin/bash
-
 
 write_files:
     - path: /etc/ssh/sshd_config
@@ -94,7 +82,3 @@ power_state:
   mode: reboot
   message: First reboot
   condition: True
-
-
-
-
