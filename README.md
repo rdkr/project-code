@@ -18,7 +18,7 @@ The current configuration sets up three user accounts and allows connection via 
 Root ssh access has been disabled.
 
 #### Packages
-- apt-transfer-https: used to install docker via the https repository
+- apt-transfer-https: used to install docker via the https repository.
 - docker-ce: installs the docker-ce version via the official docker repository. The config uses the relevant gpg key to ensure authenticity. Presently, the installation is specific to Ubuntu 16.04 Xenial. 
 
 ## Application
