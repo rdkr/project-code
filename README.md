@@ -39,8 +39,11 @@ The following has been added to the Cloud-init.txt file
 * The "-d" flag allows us to run this container in the background, which is what we want for a website.
 
 Type `docker ps -a` to view any current containers, currently that should be limited to nginx.
+
 Type `docker stop docker-nginx` to stop the container.
+
 Type `docker start docker-nginx` to start the container.
+
 Type `docker rm docker-nginx` to remove the container (WARNING THIS WILL DELETE IT).
 
 
