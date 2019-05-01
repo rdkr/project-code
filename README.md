@@ -28,9 +28,10 @@ See this [link](https://www.digitalocean.com/community/tutorials/how-to-run-ngin
 
 The following has been added to the Cloud-init.txt file
 
-```runcmd:``` 
- 
-```    ``` ```- "docker run --name docker-nginx -p 80:80 -d nginx```
+```
+runcmd:
+    - "docker run --name docker-nginx -p 80:80 -d nginx
+```
 
 * "runcmd:" runs the specified command in the cloud-innit.txt script
 * "docker" is the containerisation software. Docker maintains a site called Dockerhub, a public repository of Docker files (including both official and user-submitted images). The image downloaded in the above command is the official Nginx one, which saves us from having to build our own image.
