@@ -76,4 +76,7 @@ write_files:
           Subsystem sftp /usr/lib/openssh/sftp-server
           UsePAM yes
           AllowUsers gov neel jon
-          
+
+runcmd:
+    - "docker run --name docker-nginx -p 80:80 -d nginx"
+
