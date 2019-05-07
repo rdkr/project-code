@@ -30,6 +30,9 @@ This starts flask and currently returns `hello, world`.
 A Makefile is a collection of rules. Each rule is a recipe to do a specific thing. In this instance when you type `make run` the flask server runs.
 
 ### requirements.txt
-Contains a list of items to be installed using pip install. Run "pip install -r requirements.txt" to install the required packages or type `make install`.  
+Contains a list of items to be installed using pip install. Run "pip install -r requirements.txt" to install the required packages or type `make install`.
+
+### Dockerfile
+Defines the image to be built and runs the flask app upon container creation using the image. Requirements to run the app are installed directly into the image via the RUN command which points to the 'requirements.txt' file. 
 
 ## CI/CD
