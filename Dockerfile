@@ -11,7 +11,7 @@ COPY . /app
 
 RUN pip install -r requirements.txt
 
-# Make port 80 available to the world outside this container
+# Specify the container to listen on port 80 within the local Docker network
 EXPOSE 80
 
 # Run main.py (flask app) when the container launches
