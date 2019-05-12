@@ -27,7 +27,8 @@ Root ssh access has been disabled.
 This starts flask and currently returns `hello, world`.
 
 ### Makefile
-A Makefile is a collection of rules. Each rule is a recipe to do a specific thing. In this instance when you type `make run` the flask server runs.
+A Makefile is a collection of rules. Each rule is a recipe to do a specific thing. The Makefile has been configured to build an image from the Dockerfile
+and run the flask app within a container
 
 ### requirements.txt
 Contains a list of items to be installed using pip install. Run "pip install -r requirements.txt" to install the required packages or type `make install`.
