@@ -1,5 +1,5 @@
 # Install python as a parent image 
-From python:3.7
+FROM python:3.7
 
 # Set working directory to app
 WORKDIR /app
@@ -8,13 +8,11 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
-# Make port 80 available to the world outside this container
+RUN pip install -r requirements.txt
+
+# Specify the container to listen on port 80 within the local Docker network
 EXPOSE 80
 
-# Define environment variable
-ENV NAME World
-
-# Run app.py when the container launches
-CMD ["python", "app.py"]
+# Run main.py (flask app) when the container launches
+CMD ["python", "main.py"]
