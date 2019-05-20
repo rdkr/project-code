@@ -52,16 +52,20 @@ Type `docker rm docker-nginx` to remove the container (WARNING THIS WILL DELETE 
 
 ## Application
 
-### main.py
-This starts flask and currently returns `hello, world`.
+### app.py
+This starts flask and currently returns `hello, world`. Configuration is to be done via environment variables and CLI options wherever possible. 
 
 ### Makefile
-A Makefile is a collection of rules. Each rule is a recipe to do a specific thing. The Makefile has been configured to build an image from the Dockerfile and run the flask app within a container
+A Makefile is a collection of rules. Each rule is a recipe to do a specific thing. 
+* `build`: Builds a docker image using the Dockerfile in the pwd.
+* `run`: Runs the docker image that was built and links the pre-specified ports.
+* `dev`: Runs a local version of the flask app in development mode
+* `install`: Installs requirements as specified in requirements.txt
 
 ### requirements.txt
 Contains a list of items to be installed using pip install. Run "pip install -r requirements.txt" to install the required packages or type `make install`.
 
 ### Dockerfile
-Defines the image to be built and runs the flask app upon container creation using the image. Requirements to run the app are installed directly into the image via the RUN command which points to the 'requirements.txt' file. 
+Defines the image to be built and runs the flask app when the container is created via `docker run`. The Dockerfile is to be used for setting up the production version of the app. Presently it runs the flask app in production mode and specifies a host which allows for external network connections. 
 
 ## CI/CD
