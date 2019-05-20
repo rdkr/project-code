@@ -4,7 +4,7 @@ build:
 run:
 	docker run -p 80:5000 rdkr/project-code
 
-make:
+dev:
 	FLASK_ENV=development flask run
 
 install:
