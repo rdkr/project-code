@@ -8,11 +8,12 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in requirements.txt
-
 RUN pip install -r requirements.txt
 
-# Specify the container to listen on port 80 within the local Docker network
-EXPOSE 80
+# Specify the container to listen within the local Docker network
+EXPOSE 5000
 
-# Run main.py (flask app) when the container launches
-CMD ["python", "main.py"]
+# Run app.py (flask app) when the container launches
+ENTRYPOINT ["flask"]
+
+CMD ["run", "--host=0.0.0.0"]
