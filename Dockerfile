@@ -14,5 +14,8 @@ RUN pip install -r requirements.txt
 # Specify the container to listen on port 80 within the local Docker network
 EXPOSE 80
 
-# Run main.py (flask app) when the container launches
-CMD ["python", "main.py"]
+ENTRYPOINT [ "python" ]
+
+# Run main.py (flask app) when the container launches we also pass in the
+# "Docker" argument which is used by the flask app.
+CMD ["main.py", "Docker"]
