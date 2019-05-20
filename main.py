@@ -1,9 +1,14 @@
 from flask import Flask
+import sys
+
 app = Flask(__name__)
 
 @app.route("/")
 def home():
     return("<h1>Home Page<h1>"+"<h6>Hello, world!<h6>")
+#If run from docker specify the host and no debug mode
+if sys.argv[1] == "Docker":
+    app.run(host = "0.0.0.0")
 
-if __name__ == '__main__':
-    app.run(app.run(host='0.0.0.0', port=80))
+elif __name__ == '__main__':
+    app.run(debug=True)
