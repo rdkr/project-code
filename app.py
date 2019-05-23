@@ -2,7 +2,6 @@
 from flask import Flask
 app = Flask(__name__)
 
-"""URL Routing list."""
 @app.route("/")
 def home():
     """Home Page."""
