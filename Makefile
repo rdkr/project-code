@@ -10,4 +10,4 @@ install:
 
 lint:
 	python -m pylint *.py
-	python -m pydocstyle *py
+	python -m pydocstyle *.py
