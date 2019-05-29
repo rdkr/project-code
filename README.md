@@ -60,7 +60,8 @@ A Makefile is a collection of rules. Each rule is a recipe to do a specific thin
 * `build`: Builds a docker image using the Dockerfile in the pwd.
 * `run`: Runs the docker image that was built and links the pre-specified ports.
 * `dev`: Runs a local version of the flask app in development mode
-* `install`: Installs requirements as specified in requirements.txt
+* `install`: Installs requirements as specified in requirements.txt and requirements_dev.txt
+* `lint`: Runs pylint and pydocstyle on python files within the project directory.
 
 ### requirements.txt
 Contains a list of items to be installed using pip install. Run "pip install -r requirements.txt" to install the required packages or type `make install`.
@@ -69,3 +70,9 @@ Contains a list of items to be installed using pip install. Run "pip install -r 
 Defines the image to be built and runs the flask app when the container is created via `docker run`. The Dockerfile is to be used for setting up the production version of the app. Presently it runs the flask app in production mode and specifies a host which allows for external network connections. 
 
 ## CI/CD
+
+### .pylintrc
+This is the configuration file for the pylint rules see [this page](https://github.com/rdkr/project-code/wiki/Python) for further info on pylint. Currently everything has been left to the default settings with the exception of the constant naming style rule which has been changed to allow all title cases (rather than requiring it to be in capitals).
+
+### requirements_dev.txt
+Similar to the requirements.txt file, however the items within this file relate to developer tools (pylint and pydocstyle) rather than for the app.py application. Run "pip install -r requirements_dev.txt" to install the required packages or type `make install`.
