@@ -9,4 +9,9 @@ dev:
 
 install:
 	pip install -r requirements.txt
+	pip install -r requirements_dev.txt
+	git config core.hooksPath .githooks
 
+lint:
+	python -m pylint *.py
+	python -m pydocstyle *.py
