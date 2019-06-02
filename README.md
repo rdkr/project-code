@@ -72,7 +72,13 @@ Defines the image to be built and runs the flask app when the container is creat
 ## CI/CD
 
 ### .pylintrc
-This is the configuration file for the pylint rules see [this page](https://github.com/rdkr/project-code/wiki/Python) for further info on pylint. Currently everything has been left to the default settings with the exception of the constant naming style rule which has been changed to allow all title cases (rather than requiring it to be in capitals).
+This is the configuration file for the [pylint](https://github.com/rdkr/project-code/wiki/Python). Currently everything has been left to the default settings with the exception of the constant naming style rule which has been changed to allow all title cases (rather than requiring it to be in capitals).
+
+### .githooks
+Acts as the central location for the project [git hooks](https://github.com/rdkr/project-code/wiki/Git). By default the git hooks directory is $GIT_DIR/hooks, however this has been changed to ".githooks" via the `core.hooksPath` command which is initiated by the `make install` command. 
+
+#### pre-commit
+A git hook which currently executes the `make-lint` command when `git commit` is run. 
 
 ### requirements_dev.txt
 Similar to the requirements.txt file, however the items within this file relate to developer tools (pylint and pydocstyle) rather than for the app.py application. Run "pip install -r requirements_dev.txt" to install the required packages or type `make install`.
